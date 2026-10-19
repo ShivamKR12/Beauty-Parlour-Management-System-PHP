@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Beauty Parlour Management System | Home Page</title>
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style-starter.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body id="home">
+
+{% include "header.html" %}
+
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  });
+});
+</script>
+
+<!-- HERO SLIDER -->
+<div class="w3l-hero-headers-9">
+  <div class="css-slider">
+
+    <input id="slide-1" type="radio" name="slides" checked>
+    <section class="slide slide-one">
+      <div class="container">
+        <div class="banner-text">
+          <h4>Creative Styling</h4>
+          <h3>beauty salon<br>fashion for woman</h3>
+          <a href="/book-appointment" class="btn logo-button top-margin">
+            Get An Appointment
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <input id="slide-2" type="radio" name="slides">
+    <section class="slide slide-two">
+      <div class="container">
+        <div class="banner-text">
+          <h4>Creative Styling</h4>
+          <h3>beauty salon<br>fashion for woman</h3>
+          <a href="/book-appointment" class="btn logo-button top-margin">
+            Get An Appointment
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <header>
+      <label for="slide-1"></label>
+      <label for="slide-2"></label>
+    </header>
+
+  </div>
+</div>
+
+<!-- CALL TO ACTION -->
+<section class="w3l-call-to-action_9">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-4 col-md-6 color-2">
+        <h4>Our Salon is Most Popular</h4>
+        <p class="para">Eline Hair and Beauty Salon Offers - Beauty Services</p>
+        <a href="/about" class="btn action-button mt-3">Read more</a>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <img src="{{ url_for('static', filename='images/5.jpg') }}" class="img-responsive">
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <img src="{{ url_for('static', filename='images/6.jpg') }}" class="img-responsive">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section class="w3l-teams-15">
+  <div class="container text-center">
+    <h3>Come experience the secrets of relaxation</h3>
+    <p class="para">
+      Best Beauty expert at your home and provides beauty salon at home.
+    </p>
+    <a href="/book-appointment" class="btn logo-button mt-4">
+      Get An Appointment
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="w3l-specification-6">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-6">
+        <img src="{{ url_for('static', filename='images/b1.jpg') }}" class="img-responsive">
+      </div>
+
+      <div class="col-lg-6">
+        <h3>Clean and Recommended Hair Salon</h3>
+        <p class="para">
+          Their array of beauty parlour services include haircuts, spas, colouring, and more.
+        </p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>Hair cut with Blow dry</li>
+              <li>Color & highlights</li>
+              <li>Shampoo & Set</li>
+              <li>Blow Dry & Curl</li>
+              <li>Advance Hair Color</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul>
+              <li>Back Massage</li>
+              <li>Hair Treatment</li>
+              <li>Face Massage</li>
+              <li>Skin Care</li>
+              <li>Body Therapies</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% include "footer.html" %}
+
+<!-- MOVE TOP -->
+<button onclick="topFunction()" id="movetop">↑</button>
+
+<script>
+window.onscroll = function () {
+  document.getElementById("movetop").style.display =
+    document.documentElement.scrollTop > 20 ? "block" : "none";
+};
+
+function topFunction() {
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>

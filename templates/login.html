@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Beauty Parlour Management System | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-starter.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body id="home">
+
+{% include "header.html" %}
+
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  });
+});
+</script>
+
+<section class="w3l-inner-banner-main">
+  <div class="container text-center">
+    <h3>Login Page</h3>
+  </div>
+</section>
+
+<section class="w3l-contact-info-main" id="contact">
+  <div class="container">
+    <div class="d-grid contact-view">
+      <div class="cont-details">
+        <div class="cont-top">
+          <div class="cont-left text-center"><span class="fa fa-phone text-primary"></span></div>
+          <div class="cont-right"><h6>Call Us</h6><p class="para"><a href="tel:+{{ contact.MobileNumber }}">{{ contact.MobileNumber }}</a></p></div>
+        </div>
+        <div class="cont-top margin-up">
+          <div class="cont-left text-center"><span class="fa fa-envelope-o text-primary"></span></div>
+          <div class="cont-right"><h6>Email Us</h6><p class="para"><a href="mailto:{{ contact.Email }}">{{ contact.Email }}</a></p></div>
+        </div>
+        <div class="cont-top margin-up">
+          <div class="cont-left text-center"><span class="fa fa-map-marker text-primary"></span></div>
+          <div class="cont-right"><h6>Address</h6><p class="para">{{ contact.PageDescription }}</p></div>
+        </div>
+        <div class="cont-top margin-up">
+          <div class="cont-left text-center"><span class="fa fa-clock text-primary"></span></div>
+          <div class="cont-right"><h6>Time</h6><p class="para">{{ contact.Timing }}</p></div>
+        </div>
+      </div>
+
+      <div class="map-content-9 mt-lg-0 mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="post">
+          <div>
+            <input type="text" class="form-control" name="emailcont" placeholder="Registered Email or Contact Number" required>
+          </div>
+          <div style="padding-top: 30px;">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+          </div>
+          <div class="twice-two" style="padding-top: 30px;">
+            <a class="link--gray" style="color: blue;" href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn btn-contact" name="login">Login</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% include "footer.html" %}
+
+<button onclick="topFunction()" id="movetop" title="Go to top"><span class="fa fa-long-arrow-up"></span></button>
+<script>
+window.onscroll = function () {
+  document.getElementById("movetop").style.display = (document.documentElement.scrollTop > 20) ? "block" : "none";
+};
+function topFunction() { document.documentElement.scrollTop = 0; }
+</script>
+
+</body>
+</html>

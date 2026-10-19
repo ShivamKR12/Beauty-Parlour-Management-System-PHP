@@ -1,0 +1,22 @@
+# Composer
+/vendor/
+
+# Python (for app.py)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+
+# Sensitive / Local configuration
+.env
+config.local.php
+
+# OS / Editor Files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

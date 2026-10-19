@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Beauty Parlour Management System | Contact Us</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style-starter.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+</head>
+
+<body id="home">
+
+{% include "header.html" %}
+
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<script>
+$(function () {
+
+  // Load contact info
+  $.getJSON("/api/contact-info", function (data) {
+    $("#phone").text(data.MobileNumber);
+    $("#email").text(data.Email);
+    $("#address").text(data.PageDescription);
+    $("#time").text(data.Timing);
+  });
+
+  // Submit contact form
+  $("#contactForm").submit(function (e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: "/api/contact",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        fname: $("#fname").val(),
+        lname: $("#lname").val(),
+        phone: $("#phoneInput").val(),
+        email: $("#emailInput").val(),
+        message: $("#message").val()
+      }),
+      success: function () {
+        alert("Your message was sent successfully!");
+        $("#contactForm")[0].reset();
+      },
+      error: function () {
+        alert("Something went wrong. Please try again.");
+      }
+    });
+  });
+
+});
+</script>
+
+<!-- Breadcrumb -->
+<section class="w3l-inner-banner-main">
+  <div class="container text-center">
+    <h3 class="header-name">Contact Us</h3>
+  </div>
+</section>
+
+<section class="w3l-contact-info-main">
+  <div class="container d-grid contact-view">
+
+    <!-- Contact Info -->
+    <div class="cont-details">
+      <p><strong>Call:</strong> <span id="phone"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <p><strong>Address:</strong> <span id="address"></span></p>
+      <p><strong>Time:</strong> <span id="time"></span></p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="map-content-9">
+      <form id="contactForm">
+        <div class="twice-two">
+          <input type="text" id="fname" class="form-control" placeholder="First Name" required>
+          <input type="text" id="lname" class="form-control" placeholder="Last Name" required>
+        </div>
+
+        <div class="twice-two">
+          <input type="text" id="phoneInput" class="form-control" placeholder="Phone" pattern="[0-9]+" maxlength="10" required>
+          <input type="email" id="emailInput" class="form-control" placeholder="Email" required>
+        </div>
+
+        <textarea id="message" class="form-control" placeholder="Message" required></textarea>
+
+        <button type="submit" class="btn btn-contact">
+          Send Message
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+{% include "footer.html" %}
+
+<button onclick="topFunction()" id="movetop">↑</button>
+
+<script>
+function topFunction() {
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>

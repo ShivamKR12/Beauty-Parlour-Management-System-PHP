@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Beauty Parlour Management System | Invoice History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-starter.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body id="home">
+
+{% include "header.html" %}
+
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  });
+});
+</script>
+
+<!-- Breadcrumbs -->
+<section class="w3l-inner-banner-main">
+  <div class="container text-center">
+    <h3>Invoice History</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+  </div>
+</section>
+
+<section class="w3l-contact-info-main" id="contact">
+  <div class="container">
+    <div class="cont-details">
+      <div class="table-content table-responsive cart-table-content">
+        <h4 class="text-center" style="color: blue; padding-bottom: 20px;">Invoice History</h4>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Invoice Id</th>
+              <th>Customer Name</th>
+              <th>Customer Mobile Number</th>
+              <th>Invoice Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if invoices %}
+              {% for idx, invoice in enumerate(invoices, start=1) %}
+              <tr>
+                <td>{{ idx }}</td>
+                <td>{{ invoice.BillingId }}</td>
+                <td>{{ invoice.FirstName }} {{ invoice.LastName }}</td>
+                <td>{{ invoice.MobileNumber }}</td>
+                <td>{{ invoice.PostingDate }}</td>
+                <td>
+                  <a href="{{ url_for('view_invoice', invoiceid=invoice.BillingId) }}" class="btn btn-info">View</a>
+                </td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="6" style="color:red; text-align:center;">No Record Found</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "footer.html" %}
+
+<!-- Move Top Button -->
+<button onclick="topFunction()" id="movetop" title="Go to top"><span class="fa fa-long-arrow-up"></span></button>
+
+<script>
+window.onscroll = function () {
+  document.getElementById("movetop").style.display = (document.documentElement.scrollTop > 20) ? "block" : "none";
+};
+function topFunction() { document.documentElement.scrollTop = 0; }
+</script>
+
+</body>
+</html>

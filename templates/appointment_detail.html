@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Beauty Parlour Management System | Booking History</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style-starter.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+</head>
+
+<body id="home">
+
+{% include "header.html" %}
+
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  });
+
+  $.getJSON("/api/appointment/{{ aptnumber }}", function (data) {
+
+    let statusText = "Not Updated Yet";
+    if (data.Status === "Selected") statusText = "Selected";
+    if (data.Status === "Rejected") statusText = "Rejected";
+
+    let table = `
+      <table class="table table-bordered">
+        <tr><th>Appointment Number</th><td>${data.AptNumber}</td></tr>
+        <tr><th>Name</th><td>${data.FirstName} ${data.LastName}</td></tr>
+        <tr><th>Email</th><td>${data.Email}</td></tr>
+        <tr><th>Mobile Number</th><td>${data.MobileNumber}</td></tr>
+        <tr><th>Appointment Date</th><td>${data.AptDate}</td></tr>
+        <tr><th>Appointment Time</th><td>${data.AptTime}</td></tr>
+        <tr><th>Apply Date</th><td>${data.BookingDate}</td></tr>
+        <tr><th>Status</th><td>${statusText}</td></tr>
+      </table>
+    `;
+
+    $("#appointment-table").html(table);
+  });
+});
+</script>
+
+<!-- Breadcrumbs -->
+<section class="w3l-inner-banner-main">
+  <div class="container text-center">
+    <h3 class="header-name">Booking History</h3>
+    <p class="tiltle-para">
+      Appointment Details
+    </p>
+  </div>
+</section>
+
+<section class="w3l-contact-info-main">
+  <div class="container">
+    <h4 style="text-align:center;color:blue;">Appointment Details</h4>
+    <div id="appointment-table"></div>
+  </div>
+</section>
+
+{% include "footer.html" %}
+
+<button onclick="topFunction()" id="movetop">↑</button>
+
+<script>
+function topFunction() {
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>
